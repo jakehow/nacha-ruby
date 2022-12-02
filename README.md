@@ -41,6 +41,79 @@ Or install it yourself as:
 
 ### Generating a File
 
+```ruby
+
+file = ::Nacha::File.new
+
+file.header = ::Nacha::FileHeaderRecord.new(
+    priority_code: "01",
+    immediate_destination: "021000021",
+    immediate_origin: "321000123",
+    file_creation_date: "220929",
+    file_creation_time: "1648",
+    file_id_modifier: "D",
+    record_size: "094",
+    blocking_factor: 10,
+    format_code: "1",
+    immediate_destination_name: "WELLS FARGO BANK",
+    immediate_origin_name: "ACME CORPORATION"
+)
+
+file.batches << ::Nacha::Batch.new.tap do |batch|
+    batch.header = ::Nacha::BatchHeaderRecord.new(
+        service_class_code: "200",
+        company_name: "ACME CORPORATION",
+        company_discretionary_data: " ",
+        company_identification: "1233211212",
+        standard_entry_class_code: "WEB",
+        company_entry_description: "ONLINEPYMT",
+        company_descriptive_date: "220929",
+        effective_entry_date: "220930",
+        settlement_date: "273",
+        originator_status_code: "1",
+        originating_dfi_identification: "01200012",
+        batch_number: 261
+    )
+
+    batch.entries << ::Nacha::EntryDetail.new.tap do |entry|
+        entry.record = ::Nacha::EntryDetailRecord.new(
+            addenda_record_indicator: 0,
+            amount: 1_000_000,
+            check_digit: "1",
+            dfi_account_number: "1230000099",
+            discretionary_data: "S",
+            transaction_code: "27",
+            individual_identification_number: "3213211234",
+            individual_name: "DARON BERGSTROM",
+            receiving_dfi_identification: "02100002",
+            trace_number: "012345678912345"
+        )
+
+        batch.control = ::Nacha::BatchControlRecord.new(
+            service_class_code: "200",
+            entry_hash: "0002100002",
+            entry_addenda_count: 1,
+            total_debit_amount: 1_000_000,
+            total_credit_amount: 0,
+            company_identification: "1233211212",
+            originating_dfi_identification: "01200012",
+            batch_number: 261
+        )
+    end
+end
+
+file.control = ::Nacha::FileControlRecord.new(
+    batch_count: 1,
+    block_count: 1,
+    entry_addenda_count: 1,
+    entry_hash: "0002100002",
+    total_debit_amount: 1_000_000,
+    total_credit_amount: 0
+)
+
+puts file.generate
+```
+
 ### Parsing a File
 
 ```ruby
