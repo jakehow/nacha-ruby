@@ -140,9 +140,9 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/jakeho
 
 ## Resources
 
-A Primer for Developers from Nacha: https://achdevguide.nacha.org/
-BofA ACH Guide: https://files.nc.gov/ncosc/documents/eCommerce/bank_of_america_nacha_file_specs.pdf
-The Official Network Rules: 
+* [A Primer for Developers from Nacha](https://achdevguide.nacha.org/)
+* [BofA ACH Guide](https://files.nc.gov/ncosc/documents/eCommerce/bank_of_america_nacha_file_specs.pdf)
+* [The Official Network Rules($)](https://www.nacha.org/products/2023-nacha-operating-rules-guidelines-online-resource)
 
 ## Acknowledgments
 
