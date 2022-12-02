@@ -24,7 +24,7 @@ describe "Nacha::File" do
     describe "valid file: mixed standard and IAT credits" do
       let(:file_contents) { fixture("iat_mixed_credits.ACH") }
       let(:subject) { ::Nacha::File.parse(file_contents) }
-      
+
       it "should have 3 batches" do
         value(subject.batches.length).must_equal 3
       end
@@ -37,7 +37,7 @@ describe "Nacha::File" do
         subject.header.validate
         value(subject.header.errors).must_be_empty
       end
-      
+
       it "should have a valid FileControlRecord" do
         value(subject.control.validate).must_equal true
       end

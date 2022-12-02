@@ -34,64 +34,62 @@ module Nacha
   class Error < StandardError; end
   LINE_ENDING = "\n"
 
-  STANDARD_ENTRY_CLASS_CODES = [
-    "ACK",
-    "ADV",
-    "ARC", 
-    "ATX", 
-    "BOC", 
-    "CCD",
-    "CIE", 
-    "COR", 
-    "CTX", 
-    "DNE", 
-    "ENR", 
-    "IAT", 
-    "MTE", 
-    "POP",
-    "POS", 
-    "PPD", 
-    "RCK",
-    "SHR",
-    "TEL", 
-    "TRC",
-    "TRX", 
-    "WEB",
-    "XCK"
+  STANDARD_ENTRY_CLASS_CODES = %w[
+    ACK
+    ADV
+    ARC
+    ATX
+    BOC
+    CCD
+    CIE
+    COR
+    CTX
+    DNE
+    ENR
+    IAT
+    MTE
+    POP
+    POS
+    PPD
+    RCK
+    SHR
+    TEL
+    TRC
+    TRX
+    WEB
+    XCK
   ]
 
-  SERVICE_CLASS_CODES = [
-    "200",
-    "220",
-    "225",
+  SERVICE_CLASS_CODES = %w[
+    200
+    220
+    225
   ]
 
-  TRANSACTION_CODES = [
-    "21",
-    "22",
-    "23",
-    "26",
-    "27",
-    "28",
-    "31",
-    "32",
-    "33",
-    "36",
-    "37",
-    "38"
+  TRANSACTION_CODES = %w[
+    21
+    22
+    23
+    26
+    27
+    28
+    31
+    32
+    33
+    36
+    37
+    38
   ]
 
-  NOC_CODES = [
-    "C01",
-    "C02",
-    "C03",
-    "C04",
-    "C05",
-    "C06",
-    "C07"
+  NOC_CODES = %w[
+    C01
+    C02
+    C03
+    C04
+    C05
+    C06
+    C07
   ]
 
-  RETURN_CODES = [
-
-  ]
+  RETURN_CODES = []
 end

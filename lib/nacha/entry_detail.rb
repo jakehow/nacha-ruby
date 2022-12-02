@@ -17,7 +17,7 @@ module Nacha
     end
 
     def is_return?
-      record.transaction_code == '26' || record.transaction_code == '36'
+      record.transaction_code == "26" || record.transaction_code == "36"
     end
 
     def generate
@@ -36,7 +36,6 @@ module Nacha
     def errors
       record.errors + addenda.map(&:errors).flatten
     end
-
 
     def to_h
       record.to_h.merge(addenda: addenda.map(&:to_h))

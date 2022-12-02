@@ -60,7 +60,9 @@ module Nacha
     def validate
       @errors << "Expected raw data length to be 94, was #{raw_data.length}" if raw_data && raw_data.length != 94
       @errors << "Record Type Code must be 5" unless record_type_code == "5"
-      @errors << "Invalid Standard Entry Class Code" unless Nacha::STANDARD_ENTRY_CLASS_CODES.include?(standard_entry_class_code)
+      unless Nacha::STANDARD_ENTRY_CLASS_CODES.include?(standard_entry_class_code)
+        @errors << "Invalid Standard Entry Class Code"
+      end
       @errors.empty?
     end
 

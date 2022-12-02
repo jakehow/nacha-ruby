@@ -24,7 +24,7 @@ module Nacha
     end
 
     def parse_raw_data
-      raw_data.lines(chomp:true).each do |line|
+      raw_data.lines(chomp: true).each do |line|
         parse_line(line)
       end
     end
@@ -36,19 +36,19 @@ module Nacha
       when "5"
         self.current_batch = Batch.new
         standard_entry_class_code = line[50, 3]
-        if standard_entry_class_code == "IAT"
-          current_batch.header = IatBatchHeaderRecord.parse(line)
-        else
-          current_batch.header = BatchHeaderRecord.parse(line)
-        end
+        current_batch.header = if standard_entry_class_code == "IAT"
+                                 IatBatchHeaderRecord.parse(line)
+                               else
+                                 BatchHeaderRecord.parse(line)
+                               end
       when "6"
         current_batch.current_entry = EntryDetail.new
         current_batch.entries << current_batch.current_entry
-        if current_batch.iat?
-          current_batch.current_entry.record = IatEntryDetailRecord.parse(line)
-        else
-          current_batch.current_entry.record = EntryDetailRecord.parse(line)
-        end
+        current_batch.current_entry.record = if current_batch.iat?
+                                               IatEntryDetailRecord.parse(line)
+                                             else
+                                               EntryDetailRecord.parse(line)
+                                             end
       when "7"
         if current_batch.iat?
           addenda_type_code = line[1, 2]
@@ -73,11 +73,11 @@ module Nacha
             current_batch.current_entry.addenda << ForeignCorrespondentBankIatAddendaRecord.parse(line)
           end
         else
-          if current_batch.current_entry.is_return?
-            current_batch.current_entry.addenda << Returns::AddendaRecord.parse(line)
-          else
-            current_batch.current_entry.addenda << AddendaRecord.parse(line)
-          end
+          current_batch.current_entry.addenda << if current_batch.current_entry.is_return?
+                                                   Returns::AddendaRecord.parse(line)
+                                                 else
+                                                   AddendaRecord.parse(line)
+                                                 end
         end
       when "8"
         current_batch.control = BatchControlRecord.parse(line)
@@ -85,7 +85,7 @@ module Nacha
         current_batch.current_entry = nil
         self.current_batch = nil
       when "9"
-        self.control = FileControlRecord.parse(line) unless line.strip.chars.all? {|c| c == "9" }
+        self.control = FileControlRecord.parse(line) unless line.strip.chars.all? { |c| c == "9" }
       end
     end
 
@@ -114,7 +114,7 @@ module Nacha
     def to_h
       {
         header: header.to_h,
-        batches: batches.map(&:to_h), 
+        batches: batches.map(&:to_h),
         control: control.to_h
       }
     end

@@ -26,11 +26,11 @@ module Nacha
     def self.parse(input, skip_validation: false)
       record = new(
         raw_data: input,
-        record_type_code: input[0,1]&.strip,
-        addenda_type_code: input[1,2]&.strip,
-        payment_related_information: input[3,80]&.strip,
-        addenda_sequence_number: input[83,4]&.strip,
-        entry_detail_sequence_number: input[87,7]&.strip
+        record_type_code: input[0, 1]&.strip,
+        addenda_type_code: input[1, 2]&.strip,
+        payment_related_information: input[3, 80]&.strip,
+        addenda_sequence_number: input[83, 4]&.strip,
+        entry_detail_sequence_number: input[87, 7]&.strip
       )
       record.validate! unless skip_validation
       record
@@ -52,7 +52,7 @@ module Nacha
     def to_h
       {
         record_type_code: record_type_code,
-        addenda_type_code: addenda_type_code, 
+        addenda_type_code: addenda_type_code,
         payment_related_information: payment_related_information,
         addenda_sequence_number: addenda_sequence_number,
         entry_detail_sequence_number: entry_detail_sequence_number

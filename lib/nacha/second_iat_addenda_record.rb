@@ -12,15 +12,14 @@ module Nacha
     attr_accessor :originator_name, :originator_street_address
 
     def self.parse(input, skip_validation: false)
-      record = new(
+      new(
         raw_data: input,
-        record_type_code: input[0,1].strip,
-        addenda_type_code: input[1,2].strip,
-        originator_name: input[3,35].strip,
-        originator_street_address: input[38,35].strip,
-        entry_detail_sequence_number: input[87,7]&.strip
+        record_type_code: input[0, 1].strip,
+        addenda_type_code: input[1, 2].strip,
+        originator_name: input[3, 35].strip,
+        originator_street_address: input[38, 35].strip,
+        entry_detail_sequence_number: input[87, 7]&.strip
       )
-      record
     end
 
     def initialize(options = {})

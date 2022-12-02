@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require 'simplecov'
+
+require "simplecov"
 SimpleCov.start do
   add_filter "/spec/"
 end
@@ -12,8 +13,8 @@ require "nacha"
 include ::Nacha
 
 require "minitest/autorun"
-require 'minitest/reporters'
-Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
+require "minitest/reporters"
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
 def fixture(filename)
   File.read(File.join(File.dirname(__FILE__), "fixtures", filename))

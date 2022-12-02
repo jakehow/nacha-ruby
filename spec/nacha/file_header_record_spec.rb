@@ -152,20 +152,22 @@ describe "Nacha::FileHeaderRecord" do
 
   describe "#generate" do
     describe "valid record" do
-      let(:subject) { ::Nacha::FileHeaderRecord.new({
-        priority_code: "01",
-        immediate_destination: "021000021",
-        immediate_origin: "321000123",
-        file_creation_date: "220727",
-        file_creation_time: "1648",
-        file_id_modifier: "D",
-        record_size: "094",
-        blocking_factor: 10,
-        format_code: "1",
-        immediate_destination_name: "JPMORGAN CHASE BANK",
-        immediate_origin_name: "ACME CORPORATION",
-        reference_code: ""
-      }) }
+      let(:subject) do
+        ::Nacha::FileHeaderRecord.new({
+                                        priority_code: "01",
+                                        immediate_destination: "021000021",
+                                        immediate_origin: "321000123",
+                                        file_creation_date: "220727",
+                                        file_creation_time: "1648",
+                                        file_id_modifier: "D",
+                                        record_size: "094",
+                                        blocking_factor: 10,
+                                        format_code: "1",
+                                        immediate_destination_name: "JPMORGAN CHASE BANK",
+                                        immediate_origin_name: "ACME CORPORATION",
+                                        reference_code: ""
+                                      })
+      end
 
       it "should be valid after generation" do
         subject.generate

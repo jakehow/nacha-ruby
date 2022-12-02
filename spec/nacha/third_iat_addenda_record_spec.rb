@@ -49,13 +49,13 @@ describe "Nacha::ThirdIatAddendaRecord" do
     describe "valid record" do
       let(:subject) do
         ThirdIatAddendaRecord.new(
-          originator_city_and_state: 'SAO PAULO*ZZ\\',
-          originator_country_and_postal_code: 'BR*04543000\\',
+          originator_city_and_state: "SAO PAULO*ZZ\\",
+          originator_country_and_postal_code: "BR*04543000\\",
           entry_detail_sequence_number: 91_889
         )
       end
 
-      before { subject.generate}
+      before { subject.generate }
 
       it "should be valid" do
         value(subject.validate).must_equal true

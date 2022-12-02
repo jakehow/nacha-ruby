@@ -44,7 +44,7 @@ describe "Nacha::FileControlRecord" do
       end
 
       it "should set the total debit entry dollar amount" do
-        value(subject.total_debit_amount).must_equal 3123400
+        value(subject.total_debit_amount).must_equal 3_123_400
       end
 
       it "should set the total credit entry dollar amount" do
@@ -61,7 +61,7 @@ describe "Nacha::FileControlRecord" do
           block_count: 3,
           entry_addenda_count: 21,
           entry_hash: "0007821945",
-          total_debit_amount: 3123400,
+          total_debit_amount: 3_123_400,
           total_credit_amount: 142
         )
       end
@@ -96,7 +96,7 @@ describe "Nacha::FileControlRecord" do
       end
 
       it "should set the total debit entry dollar amount" do
-        value(subject.total_debit_amount).must_equal 3123400
+        value(subject.total_debit_amount).must_equal 3_123_400
       end
 
       it "should set the total credit entry dollar amount" do
@@ -113,7 +113,7 @@ describe "Nacha::FileControlRecord" do
           block_count: 3,
           entry_addenda_count: 21,
           entry_hash: "0007821945",
-          total_debit_amount: 3123400,
+          total_debit_amount: 3_123_400,
           total_credit_amount: 142
         )
       end
