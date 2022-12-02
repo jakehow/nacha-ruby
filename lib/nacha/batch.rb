@@ -9,7 +9,6 @@
 
 module Nacha
   class Batch
-
     attr_accessor :header, :current_entry, :control, :entries
 
     def initialize(header: nil, entries: [], control: nil)

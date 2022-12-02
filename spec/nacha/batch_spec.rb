@@ -10,7 +10,7 @@ describe "Nacha::Batch" do
       end
 
       let(:header) { IatBatchHeaderRecord.parse(raw_data, skip_validation: true) }
-      let(:subject) { Batch.new(header: header)}
+      let(:subject) { Batch.new(header: header) }
 
       it "should be true" do
         value(subject.iat?).must_equal true
@@ -23,7 +23,7 @@ describe "Nacha::Batch" do
       end
 
       let(:header) { BatchHeaderRecord.parse(raw_data, skip_validation: true) }
-      let(:subject) { Batch.new(header: header)}
+      let(:subject) { Batch.new(header: header) }
 
       it "should be false" do
         value(subject.iat?).must_equal false

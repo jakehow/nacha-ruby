@@ -9,15 +9,15 @@
 module Nacha
   class SixthIatAddendaRecord < AddendaRecord
     attr_accessor :receiver_identification_number, :receiver_street_address
-                  
+
     def self.parse(input, skip_validation: false)
       record = new(
         raw_data: input,
-        record_type_code: input[0,1].strip,
-        addenda_type_code: input[1,2].strip,
-        receiver_identification_number: input[3,15].strip,
-        receiver_street_address: input[18,35].strip,
-        entry_detail_sequence_number: input[87,7]&.strip
+        record_type_code: input[0, 1].strip,
+        addenda_type_code: input[1, 2].strip,
+        receiver_identification_number: input[3, 15].strip,
+        receiver_street_address: input[18, 35].strip,
+        entry_detail_sequence_number: input[87, 7]&.strip
       )
       record.raw_data = input
       record.record_type_code = input[0, 1].strip
@@ -31,7 +31,7 @@ module Nacha
     def initialize(options = {})
       self.errors = []
       self.raw_data = options.fetch(:raw_data, nil)
-      self.record_type_code = options.fetch(:record_type_code, '7')
+      self.record_type_code = options.fetch(:record_type_code, "7")
       self.addenda_type_code = options.fetch(:addenda_type_code, "15")
       self.receiver_identification_number = options.fetch(:receiver_identification_number, nil)
       self.receiver_street_address = options.fetch(:receiver_street_address, nil)
@@ -51,17 +51,17 @@ module Nacha
 
     def validate
       @errors << "Expected raw data length to be 94, was #{raw_data.length}" if raw_data.length != 94
-      @errors << "Expected record type code to be 7, got #{record_type_code}" unless record_type_code == '7'
-      @errors << "Expected addenda type code to be 15, got #{addenda_type_code}" unless addenda_type_code == '15'
+      @errors << "Expected record type code to be 7, got #{record_type_code}" unless record_type_code == "7"
+      @errors << "Expected addenda type code to be 15, got #{addenda_type_code}" unless addenda_type_code == "15"
       @errors.empty?
     end
 
     def to_h
       {
         record_type_code: record_type_code,
-        addenda_type_code: addenda_type_code, 
+        addenda_type_code: addenda_type_code,
         receiver_identification_number: receiver_identification_number,
-        receiver_street_address: receiver_street_address, 
+        receiver_street_address: receiver_street_address,
         entry_detail_sequence_number: entry_detail_sequence_number
       }
     end

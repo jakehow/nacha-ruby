@@ -15,7 +15,7 @@ module Nacha
                   :amount, :foreign_receivers_or_dfi_account_number, :gateway_operator_ofac_screening_indicator,
                   :secondary_ofac_screening_indicator, :addenda_record_indicator, :trace_number
 
-    def self.parse(input, skip_validation = false)
+    def self.parse(input, _skip_validation = false)
       new(
         raw_data: input,
         record_type_code: input[0, 1].strip,

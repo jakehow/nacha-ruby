@@ -5,7 +5,9 @@ require "test_helper"
 describe "Nacha::BatchHeaderRecord" do
   describe ".parse" do
     describe "valid record" do
-      let(:raw_data) { "5200ACME CORPORATION                    1233211212WEBONLINEPYMT2209292209302731012000120000261" }
+      let(:raw_data) do
+        "5200ACME CORPORATION                    1233211212WEBONLINEPYMT2209292209302731012000120000261"
+      end
       let(:subject) { ::Nacha::BatchHeaderRecord.parse(raw_data) }
 
       it "should have the correct record type code" do

@@ -204,7 +204,7 @@ describe "IAT Credit File" do
         originating_dfi_identification: "09100001",
         total_debit_amount: 0,
         total_credit_amount: 234,
-        service_class_code: "200",
+        service_class_code: "200"
       )
     )
 
@@ -216,7 +216,7 @@ describe "IAT Credit File" do
       total_debit_amount: 0,
       total_credit_amount: 234
     )
-    
+
     value(file.generate).must_equal file_contents
   end
 end

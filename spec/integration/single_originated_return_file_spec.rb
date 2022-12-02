@@ -116,7 +116,7 @@ describe "Single Originated Return File" do
           ::Nacha::EntryDetail.new(
             record: ::Nacha::EntryDetailRecord.new(
               addenda_record_indicator: 1,
-              amount: 2212340,
+              amount: 2_212_340,
               check_digit: "1",
               dfi_account_number: "1230000099",
               transaction_code: "26",
@@ -142,7 +142,7 @@ describe "Single Originated Return File" do
           service_class_code: "225",
           entry_hash: "0002100002",
           entry_addenda_count: 2,
-          total_debit_amount: 2212340,
+          total_debit_amount: 2_212_340,
           total_credit_amount: 0,
           company_identification: "1233211212",
           originating_dfi_identification: "01200012"
@@ -155,7 +155,7 @@ describe "Single Originated Return File" do
       block_count: 1,
       entry_addenda_count: 2,
       entry_hash: "0002100002",
-      total_debit_amount: 2212340,
+      total_debit_amount: 2_212_340,
       total_credit_amount: 0
     )
 

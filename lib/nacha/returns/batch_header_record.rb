@@ -10,8 +10,8 @@
 require_relative "record"
 
 module Nacha
-    module Returns
-        class BatchHeaderRecord < Record
-        end
+  module Returns
+    class BatchHeaderRecord < Record
     end
+  end
 end

@@ -57,7 +57,9 @@ module Nacha
       errors << "Expected blocking factor to be 10, was #{blocking_factor}" if blocking_factor != 10
       errors << "Expected format code to be 1, was #{format_code}" if format_code != "1"
       errors << "Expected record size to be 094, was #{record_size}" if record_size != "094"
-      errors << "Expected creation time to be between 0000 and 2359, was #{file_creation_time}" unless file_creation_time.to_i.between?(0, 2359)
+      errors << "Expected creation time to be between 0000 and 2359, was #{file_creation_time}" unless file_creation_time.to_i.between?(
+        0, 2359
+      )
       errors.empty?
     end
 
